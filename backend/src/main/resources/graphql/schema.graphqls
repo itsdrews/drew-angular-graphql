@@ -1,0 +1,23 @@
+type Query {
+  # Query placeholder para o schema ser válido
+  workouts: [Workout]
+}
+
+type Mutation {
+  scheduleWorkout(input: WorkoutInput!): Workout
+}
+
+input WorkoutInput {
+  title: String!
+  dateTime: String! # Passaremos como String ISO-8601
+  distanceInKm: Float!
+  durationInMinutes: Int!
+}
+
+type Workout {
+  id: ID
+  title: String
+  dateTime: String
+  distanceInKm: Float
+  durationInMinutes: Int
+}
