@@ -1,24 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideApollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache } from '@apollo/client/core';
-import { inject } from '@angular/core';
+import { App } from './app/app';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideHttpClient(),
-
-    provideApollo(() => {
-      const httpLink = inject(HttpLink);
-
-      return {
-        link: httpLink.create({
-          uri: 'http://localhost:8080/graphql',
-        }),
-        cache: new InMemoryCache(),
-      };
-    }),
-  ],
-});
+bootstrapApplication(App, appConfig);
