@@ -1,14 +1,23 @@
 <div class="main-layout">
-  <header>
-    <h1>🏃‍♂️ Runner Scheduler</h1>
+  <header class="app-header">
+    <div class="header-content">
+      <h1><span>Drew</span> ⚡Speed</h1>
+      <div class="header-actions">
+        <div class="user-badge"><span class="status-dot"></span> Online</div>
+        <button class="btn-logout">Sair</button>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="add-workout-section">
-      <app-workout-form></app-workout-form>
-    </section>
+  <main class="container">
+  <app-workout-list (editRequested)="workoutForm.openModal($event)"></app-workout-list>
+  
+  <app-workout-form #workoutForm></app-workout-form>
+  </main>
 
-    <section class="list-section">
-      <app-workout-list></app-workout-list>
-    </section> </main>
+  <button class="fab-button" (click)="workoutForm.openModal()">
+    <span>+</span>
+  </button>
+
+  <app-workout-form #workoutForm></app-workout-form>
 </div>

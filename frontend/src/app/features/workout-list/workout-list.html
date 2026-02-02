@@ -1,29 +1,38 @@
 <div class="list-container">
-  <h2>Meus Treinos</h2>
+  <header class="list-header">
+    <h2>Meus Treinos</h2>
+  </header>
 
   <div class="cards-grid">
-    <div *ngFor="let workout of workouts$ | async" class="workout-card">
-      
+    <div 
+      *ngFor="let workout of workouts$ | async" 
+      class="workout-card" 
+      (click)="onEditWorkout(workout)"
+    >
       <div class="card-header">
+        <span class="date">{{ workout.dateTime | date:'dd MMM, HH:mm' }}</span>
         <h3>{{ workout.title }}</h3>
-        <span class="date">{{ workout.dateTime | date:'dd/MM/yyyy HH:mm' }}</span>
       </div>
 
       <div class="card-body">
         <div class="stat">
-          <span class="label">Distância:</span>
-          <span class="value">{{ workout.distanceInKm }} km</span>
+          <span class="label">Distância</span>
+          <div class="value">
+            {{ workout.distanceInKm }}<span>km</span>
+          </div>
         </div>
+        
         <div class="stat">
-          <span class="label">Duração:</span>
-          <span class="value">{{ workout.durationInMinutes }} min</span>
+          <span class="label">Duração</span>
+          <div class="value">
+            {{ workout.durationInMinutes }}<span>min</span>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-  
+
   <div *ngIf="(workouts$ | async)?.length === 0" class="empty-state">
-    <p>Nenhum treino agendado ainda.</p>
+    <p>Nenhum treino encontrado. Hora de se mexer! ⚡</p>
   </div>
 </div>

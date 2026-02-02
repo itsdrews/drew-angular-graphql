@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import { CREATE_WORKOUT, GET_WORKOUTS } from './workout.graphql';
+import { CREATE_WORKOUT, GET_WORKOUTS,UPDATE_WORKOUT,DELETE_WORKOUT } from './workout.graphql';
 import { Workout, WorkoutInput, WorkoutResponse }  from '../models/workout.model'
 
 @Injectable({
@@ -42,4 +42,32 @@ export class WorkoutService {
     )
 
   }
+  updateWorkout(id: string, input: WorkoutInput): Observable<Workout> {
+    return this.apollo
+      .mutate({
+        mutation: UPDATE_WORKOUT,
+        variables: {
+          id: id,
+          input: input
+        },
+        // Isso força o Apollo a atualizar o cache da lista automaticamente
+        refetchQueries: [{ query: GET_WORKOUTS }]
+      })
+      .pipe(
+        map(result => result.data as any),
+        map(data => data.updateWorkout as Workout)
+      );
+  }
+
+  deleteWorkout(id: string): Observable<boolean> {
+  return this.apollo
+    .mutate({
+      mutation: DELETE_WORKOUT,
+      variables: { id },
+      refetchQueries: [{ query: GET_WORKOUTS }]
+    })
+    .pipe(
+      map(result => !!result.data) // Retorna true se a operação teve sucesso
+    );
+}
 }
