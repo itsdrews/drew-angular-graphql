@@ -1,0 +1,36 @@
+<div class="login-page">
+  <div class="login-card">
+    <header>
+      <div class="logo-bolt">⚡</div>
+      <h1>DREW SPEED</h1>
+      <p>Acesse seu painel de performance</p>
+    </header>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" placeholder="atleta@speed.com" />
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="btn-login">
+        Entrar <span>→</span>
+      </button>
+    </form>
+
+    <div class="footer-link">Ainda não é um atleta? <a routerLink="/register">Cadastre-se</a></div>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="error-toast">
+  {{ errorMessage }}
+</div>
+
+<button type="submit" [disabled]="loginForm.invalid || isLoading" class="btn-login">
+  <span *ngIf="!isLoading">Entrar ⚡</span>
+  <span *ngIf="isLoading" class="spinner"></span>
+</button>
