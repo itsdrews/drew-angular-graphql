@@ -1,0 +1,34 @@
+<div class="login-page">
+  <div class="login-card">
+    <header>
+      <div class="logo-bolt">⚡</div>
+      <h1>CRIAR CONTA</h1>
+      <p>Junte-se ao time de atletas de elite</p>
+    </header>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="input-group">
+        <label>Nome Completo</label>
+        <input type="text" formControlName="name" placeholder="Ex: Drew Speed">
+      </div>
+
+      <div class="input-group">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" placeholder="seu@email.com">
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" formControlName="password" placeholder="Mínimo 6 caracteres">
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid || isLoading" class="btn-login">
+        {{ isLoading ? 'Criando conta...' : 'Começar Agora ⚡' }}
+      </button>
+    </form>
+
+    <div class="footer-link">
+      Já faz parte do time? <a routerLink="/login">Faça Login</a>
+    </div>
+  </div>
+</div>
