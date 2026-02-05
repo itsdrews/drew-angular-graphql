@@ -21,3 +21,23 @@ type Workout {
   distanceInKm: Float
   durationInMinutes: Int
 }
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+# Input separado para não expor a senha no retorno das Queries
+input UserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+extend type Query {
+  users: [User]
+}
+
+extend type Mutation {
+  createUser(input: UserInput!): User
+}
