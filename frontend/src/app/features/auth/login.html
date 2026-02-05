@@ -29,8 +29,3 @@
 <div *ngIf="errorMessage" class="error-toast">
   {{ errorMessage }}
 </div>
-
-<button type="submit" [disabled]="loginForm.invalid || isLoading" class="btn-login">
-  <span *ngIf="!isLoading">Entrar ⚡</span>
-  <span *ngIf="isLoading" class="spinner"></span>
-</button>

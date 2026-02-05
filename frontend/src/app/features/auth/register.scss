@@ -1,0 +1,106 @@
+// Reutilizando a mesma base estética
+$bg-color: #121212;
+$card-bg: #1e1e1e;
+$accent-neon: #d0ff00;
+$input-bg: #2a2a2a;
+$text-main: #ffffff;
+$text-muted: #a0a0a0;
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
+  padding: 20px;
+
+  .login-card {
+    background: $card-bg;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba($accent-neon, 0.1);
+    width: 100%;
+    max-width: 450px; // Ligeiramente mais largo para acomodar campos extras
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+
+      .logo-bolt {
+        font-size: 2.5rem;
+        text-shadow: 0 0 15px rgba($accent-neon, 0.5);
+      }
+
+      h1 {
+        color: $text-main;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 10px 0 5px;
+      }
+
+      p { color: $text-muted; font-size: 0.9rem; }
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+
+      label {
+        display: block;
+        color: $text-muted;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      input {
+        width: 100%;
+        background: $input-bg;
+        border: 1px solid #333;
+        color: white;
+        padding: 14px;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+
+        &:focus {
+          border-color: $accent-neon;
+          outline: none;
+          box-shadow: 0 0 0 4px rgba($accent-neon, 0.05);
+        }
+      }
+    }
+
+    .btn-login {
+      width: 100%;
+      background: $accent-neon;
+      color: #000;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+
+      &:disabled { opacity: 0.5; cursor: not-allowed; }
+      &:hover:not(:disabled) { transform: scale(1.02); }
+    }
+
+    .footer-link {
+      margin-top: 25px;
+      color: $text-muted;
+      text-align: center;
+      font-size: 0.9rem;
+
+      a {
+        color: $accent-neon;
+        text-decoration: none;
+        font-weight: bold;
+        &:hover { text-decoration: underline; }
+      }
+    }
+  }
+}
