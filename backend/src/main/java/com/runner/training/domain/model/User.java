@@ -19,7 +19,7 @@ public class User {
     
     private String password; // Lembre-se: em produção, nunca salve em texto claro!
 
-    User(String name,String email, String Password){
+    public User(String name,String email, String password){
       this.name = name;
       this.email = email;
       this.password = password;

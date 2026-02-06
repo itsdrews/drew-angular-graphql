@@ -7,7 +7,7 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import com.runner.training.domain.model.User;
 import com.runner.training.application.dto.UserInput;
 import com.runner.training.domain.repository.*;
-import com.runner.training.domain.model.*;
+
 
 import java.util.List;;
 
