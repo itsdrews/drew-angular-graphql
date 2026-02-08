@@ -31,4 +31,14 @@ public class WorkoutController {
     public List<Workout> workouts() {
         return service.findAll();
     }
+
+    @MutationMapping
+    public Workout updateWorkout(@Argument Long id, @Argument WorkoutInput input) {
+        return service.updateWorkout(id, input);
+    }
+
+    @MutationMapping
+    public boolean deleteWorkout(@Argument Long id) {
+        return service.deleteWorkout(id);
+    }
 }

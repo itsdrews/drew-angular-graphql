@@ -153,6 +153,7 @@ $text-white: #ffffff;
   &:hover {
     transform: scale(1.1) rotate(90deg);
     background-color: #e6ff66;
+    cursor: pointer;
   }
 }
 

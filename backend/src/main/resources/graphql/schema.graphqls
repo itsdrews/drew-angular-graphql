@@ -5,6 +5,9 @@ type Query {
 
 type Mutation {
   scheduleWorkout(input: WorkoutInput!): Workout
+
+  updateWorkout(id: ID!, input: WorkoutInput!): Workout
+  deleteWorkout(id: ID!): Boolean
 }
 
 input WorkoutInput {
@@ -39,5 +42,17 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: UserInput!): User
+  register(input: UserInput!): AuthResponse
+
+  login(input: LoginInput!): AuthResponse
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+type AuthResponse {
+    token: String
+    user: User
 }

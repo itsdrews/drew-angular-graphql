@@ -14,5 +14,12 @@
   <main [class.container]="authService.isAuthenticated$ | async">
     <router-outlet></router-outlet>
   </main>
+<button 
+    class="fab-button" 
+    *ngIf="authService.isAuthenticated$ | async"
+    (click)="onAddWorkout()"> +
+  </button>
+
+  <app-workout-form></app-workout-form>
 
   </div>

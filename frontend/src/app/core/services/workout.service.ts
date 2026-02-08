@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { map, Observable,Subject } from 'rxjs';
 import { CREATE_WORKOUT, GET_WORKOUTS,UPDATE_WORKOUT,DELETE_WORKOUT } from './workout.graphql';
 import { Workout, WorkoutInput, WorkoutResponse }  from '../models/workout.model'
 
@@ -8,13 +8,21 @@ import { Workout, WorkoutInput, WorkoutResponse }  from '../models/workout.model
   providedIn: 'root',
 })
 export class WorkoutService {
+  private editWorkoutSubject = new Subject<Workout>();
   
+  // Expomos como Observable para o App.component ouvir
+  public editWorkoutRequest$ = this.editWorkoutSubject.asObservable();
   constructor(private apollo:Apollo){};
+
+  requestEdit(workout: Workout) {
+    this.editWorkoutSubject.next(workout);
+  }
 
   getWorkouts(): Observable<Workout[]> {
     return this.apollo
       .watchQuery<WorkoutResponse>({
         query: GET_WORKOUTS,
+        fetchPolicy:'network-only'
       })
       .valueChanges.pipe(
         map(result => {
